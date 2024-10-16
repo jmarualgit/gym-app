@@ -1,0 +1,44 @@
+<topic id="version 1-0-0 documentation">
+    <title>First [Mini] Release</title>
+
+    <shortdesc>
+        A quick [technical] intro on my app and why I chose to do what I did.
+        2024 - 10 - 16 
+        All dates are in the format YYYY MM DD.
+        TLDR: Why I structured my app as so. No GUI as of now.
+    </shortdesc>
+
+    <body>
+        <p>
+            I wanted to do some practice on OOP, making super and child classes.
+
+            PlanStructure.java is very empty and works for now just as a bridge between Main.java and the
+            plans. I aim to use this as a sort of glossary or a way to look for plans.
+
+            To access and use different plans, they will all be inheriting from Plan.java. I also made the 
+            Exercise.java class act as the foundation for exercises. As of this moment, all the lower and
+            specific classes such as Bench, Deadlift, Squat.java, etc. are blank and I will soon implement 
+            class-specific attributes such as "areas hit."
+
+            Future plans include a GUI that ties in with what I have in the engine folder. I feel confident
+            in my ability to tie it in as well as making new programs as I feel like I have a lot of reusable 
+            and understandable code.
+
+            I have yet to implement some methods across the board such as:
+            <ul>
+                <li>
+                    getAssistanceWorkExercises() in Plan.java implementors
+                    <p>
+                        As of now, I aim to just give a list of exercises to choose from though I should
+                        implement a quick volume amount (sets and reps and how heavy + more specifics).
+                    </p>
+                </li>
+                <li>
+                    my test files; test.java
+                    <p>
+                        hopefully a way to match proper weights for the specified week and and day?
+                    </p>
+                </li>
+            </ul>
+        </p>
+    </body>

@@ -1,0 +1,33 @@
+<topic id="gym-app!">
+    <title>My Java Gym App</title>
+
+    <shortdesc>A mini java app for the gym specifically for specific gym programs. For now, I have only
+    implemented a very simplified 5/3/1 from Jim Wendler.</shortdesc>
+
+    <p>
+        Following Jim Wendler's 5/3/1 Forever book, I aimed to implement the basics of the 5/3/1 program
+        in this very early version of my app.
+    </p>
+    <p>
+        For now, it is a simple as inputting bodyweight amongst other 1 rep maxes and the program will just
+        blurt out a basic 3 week program with 3 days a week of training. I am aware of the many, MANY 
+        variations of 5/3/1, all with different goals in mind, but I got the basics and foundation right
+        from the first part of the book.
+    </p>
+    <p>
+        In future versions, I will implement a UI as well as other programs. The UI will hopefully be Swing
+        graphics though I may explore other options as to familiarize myself with other libraries and APIs;
+        I may also lean towards graphics libraries that feature graphs/tables as I think that will be a
+        cool feature. I will also build more upon my current 5/3/1 features, specifically about customizing
+        the program such as weekly training frequency (how many days a week), variations of 5/3/1, excluding
+        some exercises, and many more!
+    </p>
+
+    <related-links>
+    <link format="html" href="https://www.jimwendler.com/collections/books-programs/products/5-3-1-forever-book" scope="external">
+            <linktext>Jim Wendler's 5/3/1 Forever book </linktext>
+        </link>
+        <link format="html" href="https://www.jimwendler.com" scope="external">
+            <linktext>Jim Wendler's Official Website</linktext>
+        </link>
+    </related-links>

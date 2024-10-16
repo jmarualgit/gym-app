@@ -28,5 +28,5 @@ public interface Plan {
     public Exercise initializeExercise(Exercise exercise, int weekNumber, int dayNumber, int trainingMax);
 
     // get list of exercises of assistance work depending on what body part
-    public List<String>[] getAssistanceWorkExercises(int bodyPart);
+    public List<String> getAssistanceWorkExercises(String bodyCategory);
 }

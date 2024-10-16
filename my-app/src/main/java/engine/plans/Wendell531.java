@@ -1,7 +1,7 @@
 package engine.plans;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import engine.exercises.*;
 
@@ -173,11 +173,26 @@ public class Wendell531 implements Plan {
         return exercise;
     };
 
-    
-
     @Override
-    public List<String>[] getAssistanceWorkExercises(int bodyPart) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAssistanceWorkExercises'");
+    public ArrayList<String> getAssistanceWorkExercises(String bodyCategory) {
+        ArrayList<String> exerciseList = new ArrayList<String>(); 
+
+        switch (bodyCategory) {
+            case "Push":
+                String[] pushAccessory = new String[] {"Dips", "Pushups", "Dumbbell Press", "Tricep Extensions/Pushdowns"};
+                exerciseList.addAll(Arrays.asList(pushAccessory));
+                break;
+            case "Pull":
+                String[] pullAccessory = new String[] {"Chin-Ups/Pull-Ups", "Rows", "Curls", "Lat Pulldowns", "Face Pulls", "Upright Row", "Shrugs"};
+                exerciseList.addAll(Arrays.asList(pullAccessory));
+                break; 
+            case "Core":
+            case "Leg":
+                String[] coreLegAccessory = new String[] {"Glute Ham Raise", "Ab Work", "Single Leg Movements", "Farmer Walks", "Straight Leg Deadlift"};
+                exerciseList.addAll(Arrays.asList(coreLegAccessory));
+                break;
+        }
+
+        return exerciseList;
     }
 }

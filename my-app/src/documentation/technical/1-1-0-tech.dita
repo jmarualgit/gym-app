@@ -1,0 +1,25 @@
+<topic id="version 1-1-0 documentation">
+    <title>Rep and Set System Chance</title>
+
+    <shortdesc>
+        I wanted to think more of the sets and reps as actual objects and so I tried my best 
+        to implement it as so.
+
+        Implemented some changes into the higher level classes.
+
+        2024 - 10 - 24
+    </shortdesc>
+
+    <body>
+        <p>
+            Sets have a private array of Rep objects and are initialized with a # of reps and a weight.
+            Exercise.java was modified as to reflect the changes in the rep and sets system. I much prefer
+            this system of systems of objects rather than the 2D arrays I previously had.
+        </p>
+
+        <p>
+            In the initializeExercise method of Wendell531.java, I changed the methods called with the exercise
+            object into only just initializeSet. I feel that this better aligns with how intuitive the new 
+            reps and sets system is.
+        </p>
+    </body>

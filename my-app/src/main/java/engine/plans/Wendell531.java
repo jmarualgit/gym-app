@@ -95,6 +95,7 @@ public class Wendell531 implements Plan {
         deadlift.setNumberOfSets(3);
         press.setNumberOfSets(3);
 
+        /**/
         switch (dayNumber) {
             case 0:
                 exerciseList.add(initializeExercise(squat, weekNumber, dayNumber, squatTM));
@@ -130,7 +131,8 @@ public class Wendell531 implements Plan {
                 System.out.println("squat!");
                 squat.printExercises();
                 break;
-        }
+                
+        } 
 
         return exerciseList;
     }
@@ -139,34 +141,19 @@ public class Wendell531 implements Plan {
 
         switch (WeekNumber) {
             case 0:
-                exercise.setNumberOfReps(5, 0);
-                exercise.setWeight(0, (int) (trainingMax * 0.65));
-                
-                exercise.setNumberOfReps(5, 1);
-                exercise.setWeight(1, (int) (trainingMax * 0.75));
-
-                exercise.setNumberOfReps(5, 2);
-                exercise.setWeight(2, (int) (trainingMax * 0.85));
+                exercise.initializeSet(5, (int) (trainingMax * 0.65), 0);
+                exercise.initializeSet(5, (int) (trainingMax * 0.75), 1);
+                exercise.initializeSet(5, (int) (trainingMax * 0.85), 2);
                 break;
             case 1:
-                exercise.setNumberOfReps(3, 0);
-                exercise.setWeight(0, (int) (trainingMax * 0.70));
-
-                exercise.setNumberOfReps(3, 1);
-                exercise.setWeight(1, (int) (trainingMax * 0.80));
-
-                exercise.setNumberOfReps(3, 2);
-                exercise.setWeight(2, (int) (trainingMax * 0.90));
+                exercise.initializeSet(3, (int) (trainingMax * 0.70), 0);
+                exercise.initializeSet(3, (int) (trainingMax * 0.80), 1);
+                exercise.initializeSet(3, (int) (trainingMax * 0.90), 2);
                 break;
             case 2:
-                exercise.setNumberOfReps(5, 0); 
-                exercise.setWeight(0, (int) (trainingMax * 0.75));
-
-                exercise.setNumberOfReps(3, 1);
-                exercise.setWeight(1, (int) (trainingMax * 0.85));
-
-                exercise.setNumberOfReps(1, 2);
-                exercise.setWeight(2, (int) (trainingMax * 0.95));
+                exercise.initializeSet(5, (int) (trainingMax * 0.75), 0);
+                exercise.initializeSet(3, (int) (trainingMax * 0.85), 1);
+                exercise.initializeSet(1, (int) (trainingMax * 0.95), 2);
                 break;
         }
 

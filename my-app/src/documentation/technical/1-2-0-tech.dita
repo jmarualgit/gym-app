@@ -1,0 +1,13 @@
+<topic id="version 1-2-0 technical documentation">
+    <title>Add Affected Muscles for Exercise</title>
+
+    <shortdesc>
+        Putting the muscles that the exercises I have affect.
+    </shortdesc>
+
+    <body>  
+        <p>
+            I was thinking about implementing some sort of way to have the common name for each scientific 
+            muscle name but I might just do that another time. For now, I only have the simple, common name.
+        </p>
+    </body>

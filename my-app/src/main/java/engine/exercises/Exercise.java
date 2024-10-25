@@ -6,6 +6,7 @@ public class Exercise {
 
     private Set[] setList;
     protected String[] musclesHit;
+    protected String name;
 
     public void setNumberOfSets(int numOfSetsInput) {this.setList = new Set[numOfSetsInput];}
 
@@ -38,4 +39,5 @@ public class Exercise {
     };
 
     public String[] getMusclesAffected() {return this.musclesHit;}
+    public String getName() {return this.name;}
 }

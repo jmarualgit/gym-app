@@ -8,5 +8,6 @@ public class Bench extends Exercise {
 
     private void initialize() {
         this.musclesHit = new String[]{"Pecs", "Front Delts", "Triceps"};
+        this.name = "Bench Press";
     }
 }

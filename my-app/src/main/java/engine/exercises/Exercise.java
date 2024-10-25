@@ -5,6 +5,7 @@ import engine.exercises.util.Set;
 public class Exercise {
 
     private Set[] setList;
+    protected String[] musclesHit;
 
     public void setNumberOfSets(int numOfSetsInput) {this.setList = new Set[numOfSetsInput];}
 
@@ -35,4 +36,6 @@ public class Exercise {
             System.out.println(this.setList[set].getNumberOfReps() + " x " + (int) (this.getWeight(set, 0)));
         }
     };
+
+    public String[] getMusclesAffected() {return this.musclesHit;}
 }

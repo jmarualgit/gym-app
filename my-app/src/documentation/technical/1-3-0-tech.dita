@@ -1,0 +1,13 @@
+<topic id="1-3-0 technical documentation">
+    <title>Adding feature to make your own program</title>
+
+    <shortdesc>
+        No longer tied to just the 5/3/1 program! Feel free to make your own.
+        As of now, I only have bench, deadlift, squat, and overhead press as the available exercises but more are sure to come!
+    </shortdesc>
+
+    <p>
+        Still not decided on what to do for accessory lifts and if I'm to make more classes for every exercise.
+        The program.java file is very similar to the structure of the Plan.java interface except for some methods. I chose to overload the addExercises() method for an option not to intialize it at first and just to declare it.
+        An arraylist of Exercise objects is what I chose to hold the exercises for the programs.
+    </p>

@@ -44,6 +44,7 @@ public class Navbar extends JPanel {
         // home selected
         tabbedPane.setSelectedIndex(0);
         
+        tabbedPane.setPreferredSize(new Dimension(900, 900));
         this.add(tabbedPane);
     }
 }

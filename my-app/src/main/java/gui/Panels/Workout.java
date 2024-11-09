@@ -3,37 +3,28 @@ package gui.Panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 
 import engine.plans.Plan;
 import engine.plans.Wendell531;
 
-public class Workout extends JPanel implements ActionListener {
+public class Workout extends JPanel {
 
     private Color backgroundColor = new Color(237, 237, 233);
-    private Dimension textAreaSize = new Dimension(300, 50);
-    private Dimension dropdownSize = new Dimension(200, 30);
-    private Dimension buttonSize = new Dimension(200, 50);
+    private Dimension textAreaSize = new Dimension(200, 50);
+    private Dimension workoutPanelSize = new Dimension(800, 500);
+    private Dimension workoutInnerTabSize = new Dimension(200, 50);
 
     private JButton button;
-    private JTextArea bodyWeightInput = new JTextArea("Enter bodyweight in LBS");
-    private JTextArea benchPressInput = new JTextArea("Enter bench press 1RM in LBS");
-    private JTextArea squatInput = new JTextArea("Enter squat 1RM in LBS");
-    private JTextArea deadliftInput = new JTextArea("Enter deadlift 1RM in LBS");
-    private JTextArea pressInput = new JTextArea("Enter press 1RM in LBS");
-    private JTextArea[] textAreaContainer = {bodyWeightInput, benchPressInput, squatInput, deadliftInput, pressInput};
-
-    private JComboBox<String> workoutListDropDown;
-
     public Workout () {
         initialize();
     }
@@ -41,117 +32,133 @@ public class Workout extends JPanel implements ActionListener {
     private void initialize() {
         this.setBackground(backgroundColor);
         this.setLayout(new BorderLayout(0,75));
-        createDropdown();
-        addTextAreas();
-        addButton();
+        createPanes();
     }
     
-    private void createDropdown() {
-        JPanel dropdownPanel = new JPanel();
-        dropdownPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 30));
+    private void createPanes() {
+        JTabbedPane workoutPanes = new JTabbedPane(JTabbedPane.LEFT);
+        
+        workoutPanes.addTab("Welcome!", new welcome());
+        workoutPanes.addTab("Wendell 531!", new w531());
 
-        String[] workoutLists = {"Choose a program!", "Wendell531", "Make your own!!"};
+        JLabel welcomeLabel = new JLabel("Welcome!");
+        JLabel w531Label = new JLabel("Wendell 531!!");
 
-        workoutListDropDown = new JComboBox<>(workoutLists);
-        workoutListDropDown.setPreferredSize(dropdownSize);
-        workoutListDropDown.setMaximumSize(workoutListDropDown.getPreferredSize());
-        workoutListDropDown.setSelectedIndex(0);
+        welcomeLabel.setPreferredSize(workoutInnerTabSize);
+        w531Label.setPreferredSize(workoutInnerTabSize);
 
-        ActionListener dropdownActionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (workoutListDropDown.getSelectedItem() == "Wendell531") {
-                    makeTextAreasEditable();
-                }
-            }
-        };
+        workoutPanes.setTabComponentAt(0, welcomeLabel);
+        workoutPanes.setTabComponentAt(1, w531Label);
 
-        workoutListDropDown.addActionListener(dropdownActionListener);
-        workoutListDropDown.addActionListener(this);
-        dropdownPanel.add(workoutListDropDown);
-
-        this.add(dropdownPanel, BorderLayout.PAGE_START);
+        this.add(workoutPanes, BorderLayout.LINE_START);
     }
 
-    private void addTextAreas() {
-        JPanel textAreasPanel = new JPanel();
-        textAreasPanel.setBorder(BorderFactory.createLineBorder(backgroundColor, 30));
+    private class w531 extends JPanel implements ActionListener {
+        private JTextArea bodyWeightInput = new JTextArea("Enter bodyweight in LBS");
+        private JTextArea benchPressInput = new JTextArea("Enter bench press 1RM in LBS");
+        private JTextArea squatInput = new JTextArea("Enter squat 1RM in LBS");
+        private JTextArea deadliftInput = new JTextArea("Enter deadlift 1RM in LBS");
+        private JTextArea pressInput = new JTextArea("Enter press 1RM in LBS");
+        private JTextArea weekNumberInput = new JTextArea("Enter the week date!");
+        private JTextArea[] textAreaContainer = {bodyWeightInput, benchPressInput, squatInput, deadliftInput, pressInput, weekNumberInput};
+        private JTextArea resultArea;
+        private JPanel resultsPanel;
+        private Plan plan;
 
-        for (JTextArea textArea : textAreaContainer) {
-            textArea.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2, true));
-            textArea.setPreferredSize(textAreaSize);
-            textArea.setEditable(false);
-            textAreasPanel.add(textArea);
+        public w531 () {
+            this.setPreferredSize(workoutPanelSize);
+            this.setLayout(new BorderLayout());
+            //this.setBackground(new Color(0, 0, 0));
+            
+            addTextAreas();
+            addResultsArea();
+            makeTextAreasEditable();
+            addButton();
         }
 
-        this.add(textAreasPanel, BorderLayout.CENTER);
-    }
+        private void addTextAreas() {
+            JPanel textAreasPanel = new JPanel(new GridLayout(7, 1, 0, 30));
+            textAreasPanel.setBorder(BorderFactory.createLineBorder(backgroundColor, 30));
+            //textAreasPanel.setBackground(new Color(0, 0, 0));
+    
+            for (JTextArea textArea : textAreaContainer) {
+                textArea.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2, true));
+                textArea.setPreferredSize(textAreaSize);
+                textArea.setEditable(false);
+                textAreasPanel.add(textArea);
+            }
+    
+            this.add(textAreasPanel, BorderLayout.LINE_START);
+        }
 
-    private void addButton() {
-        button = new JButton("Submit!");
+        private void addResultsArea() {
+            resultsPanel = new JPanel();
+            //resultsPanel.setBackground(new Color(100, 100, 100));
 
-        button.setPreferredSize(buttonSize);
-        button.addActionListener(this);
+            resultArea = new JTextArea("Results!\n");
+            //resultsPanel.setBackground(new Color(0, 0, 0));
+            resultsPanel.add(resultArea);
 
-        this.add(button, BorderLayout.SOUTH);
-    }
+            this.add(resultsPanel, BorderLayout.CENTER);
+        }
 
-    private void displayResults(Plan generatedPlan) {
-        // take away the boxes
-        for (JTextArea textArea : textAreaContainer) {textArea.setVisible(false);}
-
-        JPanel resultsTextPanel = new JPanel();
-        JTextPane week1 = new JTextPane();
-        week1.setPreferredSize(new Dimension(300, 500));
-        week1.setText("Week 1:\nDay 1:\n\tExercise 1:" + generatedPlan.getExercises(0, 0).get(0).getName() + "\n");
-        week1.setText(week1.getText() + generatedPlan.getExercises(0, 0).get(0).getNumberOfReps(0) + " x " + generatedPlan.getExercises(0, 0).get(0).getWeight(0, 0) + "\n");
-        week1.setText(week1.getText() + generatedPlan.getExercises(0, 0).get(0).getNumberOfReps(1) + " x " + generatedPlan.getExercises(0, 0).get(0).getWeight(1, 0) + "\n");
-        week1.setText(week1.getText() + generatedPlan.getExercises(0, 0).get(0).getNumberOfReps(2) + " x " + generatedPlan.getExercises(0, 0).get(0).getWeight(2, 0) + "\n");
-        week1.setText(week1.getText() + "\tExercise 2: " + generatedPlan.getExercises(0, 0).get(1).getName() + "\n");
-        week1.setText(week1.getText() + generatedPlan.getExercises(0, 0).get(1).getNumberOfReps(0) + " x " + generatedPlan.getExercises(0, 0).get(1).getWeight(0, 0) + "\n");
-        week1.setText(week1.getText() + generatedPlan.getExercises(0, 0).get(1).getNumberOfReps(1) + " x " + generatedPlan.getExercises(0, 0).get(1).getWeight(1, 0) + "\n");
-        week1.setText(week1.getText() + generatedPlan.getExercises(0, 0).get(1).getNumberOfReps(2) + " x " + generatedPlan.getExercises(0, 0).get(1).getWeight(2, 0) + "\n");
-
-        resultsTextPanel.add(week1);
-
-        this.add(resultsTextPanel, BorderLayout.CENTER);
-    }
-
-    private boolean isNumeric() {
-        for (JTextArea textArea : textAreaContainer) {
-            for (int i = 0; i < textArea.getText().length(); i++) {
-
-                char c = textArea.getText().charAt(i);
-
-                if (!Character.isDigit(c)) {
-                    return false;
-                }
+        private void makeTextAreasEditable() {
+            for (JTextArea textArea : textAreaContainer) {
+                textArea.setEditable(true);
             }
         }
 
-        return true;
-    }
-
-    private void makeTextAreasEditable() {
-        for (JTextArea textArea : textAreaContainer) {
-            textArea.setEditable(true);
+        private void addButton() {
+            button = new JButton("Submit!");
+    
+            button.addActionListener(this);
+    
+            this.add(button, BorderLayout.PAGE_END);
         }
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == button) {
-            System.out.println("button pressed");
-            switch ((String) workoutListDropDown.getSelectedItem()) {
-                case "Wendell531":
+        private void displayResults(int weekNumber) {
+            String textToSet = "";
 
-                    if (isNumeric()) {
+            for (int dayNumber = 0; dayNumber < this.plan.getWeeklyWorkoutFrequency(); dayNumber++) {
+    
+                textToSet = textToSet + ("Day " + (dayNumber + 1) + ":\n");
 
-                        Wendell531 w531 = new Wendell531(Double.parseDouble(bodyWeightInput.getText()), Integer.parseInt(benchPressInput.getText()), Integer.parseInt(squatInput.getText()), Integer.parseInt(deadliftInput.getText()), Integer.parseInt(pressInput.getText()));
-                        displayResults(w531);
+                for (int exerciseNumber = 0; exerciseNumber < this.plan.getExercises(dayNumber, weekNumber).size(); exerciseNumber++) {
+                    String exerciseName = this.plan.getExercises(dayNumber, weekNumber).get(exerciseNumber).getName();
+                    textToSet = textToSet + (exerciseName + "\n");
+
+                    System.out.println("exerciseName " + this.plan.getExercises(dayNumber, weekNumber).get(exerciseNumber).getName());
+                    System.out.println("text to set: " + textToSet);
+                    
+                    for (int setNumber = 0; setNumber < this.plan.getExercises(dayNumber, weekNumber).get(exerciseNumber).getNumberOfSets(); setNumber++) {
+                        System.out.println("TEST: " + this.plan.getExercises(dayNumber, weekNumber).get(exerciseNumber).getNumberOfReps(setNumber));
+                        textToSet = textToSet + (this.plan.getExercises(dayNumber, weekNumber).get(exerciseNumber).getNumberOfReps(setNumber) + " x " + this.plan.getExercises(dayNumber, weekNumber).get(exerciseNumber).getWeight(setNumber, 0)) + "\n";
+                        System.out.println("text to set: " + textToSet);
+                        //System.out.println("set#" + (setNumber + 1));
                     }
-                    System.out.println("531 selected");
+                }
             }
+
+            resultArea.setText(resultArea.getText() + textToSet);
+            resultArea.setEditable(false);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == button) {
+                for (JTextArea textArea : textAreaContainer) {textArea.setEditable(false);}
+                this.plan = new Wendell531(Double.parseDouble(bodyWeightInput.getText()), Integer.parseInt(benchPressInput.getText()), Integer.parseInt(squatInput.getText()), Integer.parseInt(deadliftInput.getText()), Integer.parseInt(pressInput.getText()));
+                System.out.println("button pressed");
+                //resultArea.setText("sawehhiuefawsihuefasihuasefiuh");
+                displayResults(Integer.parseInt(weekNumberInput.getText()) - 1);
+            }
+        }
+    }
+
+    private class welcome extends JPanel {
+        public welcome () {
+            this.setPreferredSize(workoutPanelSize);
+            this.setBackground(new Color(0, 0, 0));
         }
     }
 }

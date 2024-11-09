@@ -6,7 +6,7 @@ import java.util.Arrays;
 import engine.exercises.*;
 
 public class Wendell531 implements Plan {
-    private final int AMOUNT_OF_WEEKS = 4;
+    private final int AMOUNT_OF_WEEKS = 3;
     private final int WEEKLY_WORKOUT_FREQUENCY = 3;
 
     private double trainingMaxPercentage = 0.9;
@@ -95,41 +95,47 @@ public class Wendell531 implements Plan {
         deadlift.setNumberOfSets(3);
         press.setNumberOfSets(3);
 
+        //System.out.println("week " + weekNumber);
+
         /**/
         switch (dayNumber) {
             case 0:
                 exerciseList.add(initializeExercise(squat, weekNumber, dayNumber, squatTM));
                 exerciseList.add(initializeExercise(bench, weekNumber, dayNumber, benchTM));
 
-                System.out.println("day 1: squat and bench!");
+                //System.out.println("day 1: squat and bench!");
 
-                System.out.println("squat!");
-                squat.printExercises();
+                //System.out.println("squat!");
+                //squat.printExercises();
 
-                System.out.println("bench!");
-                bench.printExercises();
+                //System.out.println("bench!");
+                //bench.printExercises();
                 
                 break;
             case 1:
                 exerciseList.add(initializeExercise(deadlift, weekNumber, dayNumber, deadliftTM));
                 exerciseList.add(initializeExercise(press, weekNumber, dayNumber, ohpTM));
 
-                System.out.println("deadlift!");
-                deadlift.printExercises();
+                //System.out.println("day 2: deadlift and press!");
 
-                System.out.println("press!");
-                bench.printExercises();
+                //System.out.println("deadlift!");
+                //deadlift.printExercises();
+
+                //System.out.println("press!");
+                //bench.printExercises();
                 break;
             case 2:
 
                 exerciseList.add(initializeExercise(bench, weekNumber, dayNumber, benchTM));
                 exerciseList.add(initializeExercise(squat, weekNumber, dayNumber, squatTM));
 
-                System.out.println("deadlift!");
-                bench.printExercises();
+                //System.out.println("day 3: deadlift and squat!");
 
-                System.out.println("squat!");
-                squat.printExercises();
+                //System.out.println("deadlift!");
+                //bench.printExercises();
+
+                //System.out.println("squat!");
+                //squat.printExercises();
                 break;
                 
         } 
